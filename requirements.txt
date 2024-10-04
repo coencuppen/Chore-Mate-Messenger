@@ -1,4 +1,3 @@
-wikiquotes
 pandas
 requests
 pywhatkit
