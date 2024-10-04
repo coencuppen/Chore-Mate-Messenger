@@ -14,10 +14,3 @@ def getContacts():
         print(f"Error: Failed to decode JSON from {filePath}.")
         return []
 
-# Example usage of the get_contacts function
-def init():
-    contacts = getContacts()
-
-    # Output the contacts
-    for contact in contacts:
-        print(f"Name: {contact['name']}, Phone Number: {contact['phone_number']}")
