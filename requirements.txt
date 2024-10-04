@@ -1,0 +1,4 @@
+wikiquotes
+pandas
+requests
+pywhatkit
