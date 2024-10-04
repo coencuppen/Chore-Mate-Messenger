@@ -2,7 +2,7 @@ import json
 
 filePath = "contacts.json"
 
-def get_contacts():
+def getContacts():
     try:
         with open(filePath, "r") as file:
             data = json.load(file)
@@ -16,7 +16,7 @@ def get_contacts():
 
 # Example usage of the get_contacts function
 def init():
-    contacts = get_contacts()
+    contacts = getContacts()
 
     # Output the contacts
     for contact in contacts:

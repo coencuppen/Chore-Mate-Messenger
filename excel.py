@@ -5,7 +5,7 @@ from datetime import datetime
 
 # Step 1: Correct Google Sheets download URL format
 huistakenURL = "https://docs.google.com/spreadsheets/d/1KvUvxK7MPfCXKifQ_biml9cmto6CcQ8UPR5lm4kVwjc/export?format=xlsx"
-afwasRoosterURL = "https://docs.google.com/spreadsheets/d/1YO39jobgWjv6uNDabw3qdShkKv3RSR1W04Ux3q1h3yg/edit?gid=873229454#gid=873229454"
+afwasRoosterURL = "https://docs.google.com/spreadsheets/d/1YO39jobgWjv6uNDabw3qdShkKv3RSR1W04Ux3q1h3yg/export?format=xlsx"
 
 # Step 2: Define the local file path
 huistaakRoosterPath = "huistaakRooster.xlsx"
@@ -27,8 +27,25 @@ def getExcelFiles(url, path):
         print(f'File already exists: {path}')
 
 def getTodaysDishWasher():
+    # Read the Excel file
     df = pd.read_excel(afwasRoosterPath, engine='openpyxl')
-    print(df)
+    
+    # Get today's date in the format matching the 'DAG' column
+    today = datetime.now().strftime('%Y-%m-%d')
+    
+    # Filter the dataframe for today's date
+    today_row = df[df['DAG'] == today]
+    
+    if not today_row.empty:
+        # Get the name of the person
+        person = today_row['PERSOON'].values[0]
+        print(f"Today's dishwasher: {person}")
+        return person
+    else:
+        print("No entry found for today's date.")
+    
+    return None
+
 
 
 
