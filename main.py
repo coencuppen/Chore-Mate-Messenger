@@ -35,8 +35,7 @@ def sendMessageMondayChores():
                                  f"""Jouw huistaak van vandaag is {contactTask} zet hem op jij kanjer!\n\n"""
                                  f"""{quote.getQuote()}\n\n"""
                                  f"""Met vriendelijke groeten,\n"""
-                                 f"""HuisBitchBot🧹🪣✨\n\n"""
-                                 f"""(dit is een test)""", closeTab=True)
+                                 f"""HuisBitchBot🧹🪣✨\n\n""", closeTab=True)
 
 
 def main():
