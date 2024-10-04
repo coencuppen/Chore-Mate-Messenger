@@ -11,6 +11,8 @@ afwasRoosterURL = "https://docs.google.com/spreadsheets/d/1YO39jobgWjv6uNDabw3qd
 huistaakRoosterPath = "huistaakRooster.xlsx"
 afwasRoosterPath = "afwasrooster.xlsx"
 
+errorLog = []
+
 # Step 3: Check if the file already exists
 def getExcelFiles(url, path):
     if not os.path.exists(path):
@@ -46,7 +48,38 @@ def getTodaysDishWasher():
     
     return None
 
-
+def getTaskFromContactName(name):
+    # Load the Excel file into a DataFrame without a header
+    df = pd.read_excel(huistaakRoosterPath, engine='openpyxl', header=None)
+    
+    # Get today's date in the format that matches the DataFrame's date entries
+    today = datetime.now().strftime('%Y-%m-%d 00:00:00')
+    # today = '2024-09-02 00:00:00'
+    # Extract the date row (the second row) to get the actual date values
+    date_row = df.iloc[1].apply(lambda x: x.split(' ')[0] + ' 00:00:00' if isinstance(x, str) else x)  # Clean dates
+    
+    # Check if the name is in the first column of the DataFrame
+    if name in df.iloc[:, 0].values:
+        # Locate the row index for the given name
+        row_index = df.index[df.iloc[:, 0] == name].tolist()[0]
+        
+        # Get the index of today's date in the cleaned date row
+        today_index = date_row[date_row == today].index
+        
+        if not today_index.empty:  # If today's date is found in the date row
+            task_index = today_index[0]  # Get the first index
+            task = df.at[row_index, task_index]
+            if pd.notna(task):  # Check if the task is not NaN
+                return task
+            else:
+                errorLog.append(f"{name} has no task assigned for today.")
+                return None
+        else:
+            errorLog.append("Today's date not found in the schedule.")
+            return None
+    else:
+        errorLog.append(f"{name} is not found in the schedule.")
+        return None
 
 
 def init():
