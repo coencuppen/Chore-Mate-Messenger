@@ -25,7 +25,7 @@ def sendMessageMondayChores():
         print(excel.getTaskFromContactName(contact['name']))
 
         contactTask = excel.getTaskFromContactName(contact['name'])
-
+        
         if contactTask:
             print(contact['name'], contactTask, today)
 
@@ -49,6 +49,8 @@ def main():
 
     if excel.errorLog:
         whatsapp.sendMessageGroup(f"ERROR LOG HUISTAKEN:\n\n{excel.errorLog}")
+
+    exit()
         
 
 
