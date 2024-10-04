@@ -1,9 +1,11 @@
 import pywhatkit
 
 
-waiting_time_to_send = 10
+waiting_time_to_send = 25
 close_tab = False
 waiting_time_to_close = 10
+
+groupId = "HuisbitchBot Error log"
 
 # mode = "contact"
 
@@ -16,8 +18,14 @@ waiting_time_to_close = 10
 #     print("Error Message: Please select a mode to send your message.")
 
 
-def sendMessage(phoneNumber : str, message : str, closeTab = False):
+def sendMessage(phoneNumber : str, message : str, closeTab = True):
     try:
         pywhatkit.sendwhatmsg_instantly(phoneNumber, message, waiting_time_to_send, closeTab)
     except:
-        print("failed")
+        sendMessageGroup(f"ERROR: failed to send message to {phoneNumber} with message:\n{message}")
+
+def sendMessageGroup(message):
+    try:
+        pywhatkit.sendwhatmsg_to_group_instantly(group_id=groupId, message=message, wait_time=waiting_time_to_send, tab_close=True)
+    except:
+        print("failed sendMessageGroup()")
