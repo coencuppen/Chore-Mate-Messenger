@@ -4,6 +4,7 @@ set target=www.google.com
 ping %target% -n 1 | find "TTL="
 if errorlevel==1 goto ping
 
+git reset --hard
 git pull https://github.com/coencuppen/Chore-Mate-Messenger
 cd %HOMEPATH%\Documents\GitHub\Chore-Mate-Messenger
 
