@@ -5,12 +5,10 @@ ping %target% -n 1 | find "TTL="
 if errorlevel==1 goto ping
 
 git pull https://github.com/coencuppen/Chore-Mate-Messenger
-
-cd C:\Users\coenc\Documents\GitHub\Chore-Mate-Messenger
+cd %HOMEPATH%\Documents\GitHub\Chore-Mate-Messenger
 
 pip install -r requirements.txt
 
 python main.py
 
-
-:: shutdown /s
+shutdown /s

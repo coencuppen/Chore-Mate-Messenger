@@ -1,7 +1,7 @@
 import pywhatkit
 
-waiting_time_to_send = 25
-waiting_time_to_close = 5
+waiting_time_to_send = 60
+waiting_time_to_close = 10
 
 groupId = "HuisbitchBot Error log"
 
