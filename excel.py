@@ -28,6 +28,12 @@ def getExcelFiles(url, path):
     else:
         print(f'File already exists: {path}')
 
+def capitalizeFirstLetter(s):
+    if len(s) > 0 and not s[0].isupper():
+        return s[0].upper() + s[1:]
+    return s
+
+
 def getTodaysDishWasher():
     # Read the Excel file
     df = pd.read_excel(afwasRoosterPath, engine='openpyxl')
@@ -42,7 +48,7 @@ def getTodaysDishWasher():
         # Get the name of the person
         person = today_row['PERSOON'].values[0]
         print(f"Today's dishwasher: {person}")
-        return person
+        return capitalizeFirstLetter(person)
     else:
         print("No entry found for today's date.")
     
@@ -80,6 +86,7 @@ def getTaskFromContactName(name):
     else:
         errorLog.append(f"{name} is not found in the schedule.")
         return None
+
 
 
 def init():

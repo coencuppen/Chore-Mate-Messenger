@@ -28,18 +28,20 @@ def sendMessageMondayChores():
         
         if contactTask:
             print(contact['name'], contactTask, today)
-
             whatsapp.sendMessage(contact['phone_number'], 
                                  f"""Beste {contact['name']},\n"""
                                  f"""Vandaag is het maandag {today} en dat betekent dat jij je weer in gaat zetten voor een mooi en schoon huize Appa!\n"""
-                                 f"""Jouw huistaak van vandaag is {contactTask} zet hem op jij kanjer!\n\n"""
+                                 f"""Jouw huistaak van vandaag is {contactTask} zet hem op jij kanjer!\n\n"""                
                                  f"""{quote.getQuote()}\n\n"""
                                  f"""Met vriendelijke groeten,\n"""
-                                 f"""HuisBitchBot🧹🪣✨\n\n""", closeTab=True)
+                                 f"""HuisBitchBot🧹🪣✨\n\r\n""", closeTab=True)
+
 
 
 def main():
     excel.init()
+
+    whatsapp.open_chrome_on_primary_screen()
 
     if datetime.now().weekday() == 0:
         sendMessageMondayChores()
