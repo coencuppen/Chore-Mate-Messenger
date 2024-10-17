@@ -10,6 +10,7 @@ git reset --hard
 git pull https://github.com/coencuppen/Chore-Mate-Messenger
 cd %HOMEPATH%\Documents\GitHub\Chore-Mate-Messenger
 
+python -m pip install --upgrade pip
 pip install -r requirements.txt
 
 python main.py

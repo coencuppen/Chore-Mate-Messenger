@@ -14,8 +14,8 @@ afwasRoosterPath = "afwasrooster.xlsx"
 errorLog = []
 
 # Step 3: Check if the file already exists
-def getExcelFiles(url, path):
-    if not os.path.exists(path):
+def getExcelFiles(url, path, forceDownload = False):
+    if not os.path.exists(path) or forceDownload:
         # Step 4: Download the Excel file
         print(f"downlaoding url:{url}")
         response = requests.get(url)
@@ -90,8 +90,8 @@ def getTaskFromContactName(name):
 
 
 def init():
-    getExcelFiles(huistakenURL, huistaakRoosterPath)
-    getExcelFiles(afwasRoosterURL, afwasRoosterPath)
+    getExcelFiles(huistakenURL, huistaakRoosterPath, True)
+    getExcelFiles(afwasRoosterURL, afwasRoosterPath, True)
 
 
 
