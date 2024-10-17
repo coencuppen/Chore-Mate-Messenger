@@ -2,7 +2,7 @@ import pywhatkit
 import pyautogui
 import time
 
-waiting_time_to_send = 60
+waiting_time_to_send = 120
 waiting_time_to_close = 20
 
 groupId = "HuisbitchBot Error log"
